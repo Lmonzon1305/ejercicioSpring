@@ -16,7 +16,7 @@ public class ClientesControlador {
 	
 	@GetMapping("api/clientes")
 	public List <Clientes> getClientes(){
-		List <Clientes> user=clientesDao.obtenerClientes();
+		List <Clientes> user=clientesDao.getClientes();
 		return user;
 	}
 

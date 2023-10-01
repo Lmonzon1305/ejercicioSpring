@@ -8,5 +8,5 @@ import jakarta.transaction.Transactional;
 
 @Transactional
 public interface ClientesDao {
-	List <Clientes> obtenerClientes();
+	List <Clientes> getClientes();
 }

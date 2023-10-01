@@ -18,7 +18,7 @@ public class ClientesDaoImp implements ClientesDao{
 	private EntityManager entityManager;
 	
 	@Override
-	public List<Clientes> obtenerClientes(){
+	public List<Clientes> getClientes(){
 		
 		String query ="from Clientes";
 		

@@ -19,11 +19,41 @@ public class UsuarioDaoImp implements UsuariosDao{
 	private EntityManager entityManager;
 	
 	@Override
-	public List<Usuarios> obtenerUsuarios() {
+	@Transactional
+	public List<Usuarios> getUsuarios() {
 		
 		String query="from Usuarios";
 		
 		return entityManager.createQuery(query).getResultList();
 	}
 
+	@Override
+	public void eliminar(Long id) {
+		
+		Usuarios usuario=entityManager.find(Usuarios.class,id);
+		
+		entityManager.remove(usuario);
+	}
+
+	@Override
+	public void registrar(Usuarios usuario) {
+		
+		entityManager.merge(usuario);
+	}
+
+	@Override
+	public boolean verificarCredenciales(Usuarios usuario) {
+			
+			String query="FROM Usuarios Where email = :email AND password = :password";
+			
+			List<Usuarios> lista= entityManager.createQuery(query).setParameter("email",usuario.getEmail())
+					.setParameter("password",usuario.getPassword()).getResultList();
+			
+			if(lista.isEmpty()) {
+				return false;
+				}else {
+					return true;
+				}
+		
+	}
 }
