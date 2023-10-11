@@ -6,6 +6,9 @@ import org.springframework.web.bind.annotation.*;
 import com.Spring.practica.dao.UsuariosDao;
 import com.Spring.practica.modelos.Usuarios;
 
+import de.mkammerer.argon2.Argon2;
+import de.mkammerer.argon2.Argon2Factory;
+
 
 @RestController
 public class UsuarioControlador {
@@ -27,8 +30,14 @@ public class UsuarioControlador {
 		usuariosDao.eliminar(id);
 	}
 	
-	@RequestMapping(value="api/usuarios", method=RequestMethod.POST)
+	@PostMapping(value="api/usuarios")
 	public void registrarUsuario(@RequestBody Usuarios usuario) {
+		
+		Argon2 argon2 = Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id);
+		
+		String hash= argon2.hash(1,1024,1,usuario.getPassword());
+		
+		usuario.setPassword(hash);
 		
 		usuariosDao.registrar(usuario);
 	}

@@ -7,6 +7,8 @@ import org.springframework.stereotype.Repository;
 
 import com.Spring.practica.modelos.Usuarios;
 
+import de.mkammerer.argon2.Argon2;
+import de.mkammerer.argon2.Argon2Factory;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
@@ -51,9 +53,13 @@ public class UsuarioDaoImp implements UsuariosDao{
 			
 			if(lista.isEmpty()) {
 				return false;
-				}else {
-					return true;
 				}
-		
+			
+			String passHasheada=lista.get(0).getPassword();
+			
+			Argon2 argon2= Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id);
+			
+			boolean passEsIgual= argon2.verify(passHasheada, usuario.getPassword());
+			return passEsIgual;
 	}
 }

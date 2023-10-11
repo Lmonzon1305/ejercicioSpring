@@ -35,6 +35,7 @@ async function registrarUsuarios(){
 		body:JSON.stringify(datos)
 	});
 	
-	const usuarios = await request.json();
+	alert('Usuario registrado con éxito');
 	
+	window.location.href='login.html';
 }

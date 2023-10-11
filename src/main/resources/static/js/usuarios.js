@@ -3,7 +3,9 @@ $(document).ready(function() {
 	
 	cargarUsuarios();
 	
-  $('#usuarios').DataTable();
+  	$('#usuarios').DataTable();
+  
+ 	eliminarUsuario();
   
 });
 
@@ -43,7 +45,7 @@ async function eliminarUsuario(id){
 		return;
 	}
 	
-	const request = await fetch('api/usuarios' + id,{
+	const request = await fetch('api/usuarios/' + id,{
 		
 		method: 'DELETE',
 		
