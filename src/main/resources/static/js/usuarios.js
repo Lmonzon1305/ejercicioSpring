@@ -5,7 +5,7 @@ $(document).ready(function() {
 	
   	$('#usuarios').DataTable();
   
- 	eliminarUsuario();
+ 	//eliminarUsuario();
   
 });
 

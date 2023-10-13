@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	iniciarSesion();
+	//iniciarSesion();
 });
 
 async function iniciarSesion(){
